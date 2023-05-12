@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
-export default function LoginButton(){
+export default function Cart(){
     return (
         <div>
-            <Link to="/login">Login</Link>
+            <Link to="/cart">Cart</Link>
         </div>
     )
 }
