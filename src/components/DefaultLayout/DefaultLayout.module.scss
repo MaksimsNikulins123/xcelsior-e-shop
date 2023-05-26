@@ -33,7 +33,16 @@
     }
     
 }
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .footer {
-    background-color: rgb(154, 228, 17);
+    background-color: rgb(213, 235, 174);
+    border-radius: $borderRadius;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 

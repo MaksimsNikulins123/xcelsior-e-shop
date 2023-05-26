@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { FilterLanguagesActionCreator, ToggleLanguageActionCreator } from '../../../redux/language-reducer';
 import Language from './Language';
-import { FilterLanguagesActionCreator, ToggleLanguageActionCreator } from './../../redux/language-reducer';
-
-
 
 const mapStateToProps = (state) => {
     // debugger

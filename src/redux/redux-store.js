@@ -5,10 +5,12 @@ import { applyMiddleware, combineReducers, legacy_createStore as createStore} fr
 import thunkMiddleware from 'redux-thunk';
 import languageReducer from './language-reducer';
 // import authReducer from './auth-reducer';
+import { reducer as formReducer } from 'redux-form'
 
 
 let reducers = combineReducers({
     language: languageReducer,
+    form: formReducer,
     // authentication: authenticationReducer,
     // authorization: authorizationReducer
     // search: searchReducer,

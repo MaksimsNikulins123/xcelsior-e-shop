@@ -5,9 +5,9 @@ import Logo from './Logo/Logo';
 import { useStateContext } from "../../contexts/ContextProvider";
 import NavigationBar from "./NavigationBar/NavigationBar";
 import AllRightReserved from "./AllRightReserved/AllRightReserved";
-// import Language from './Language/Language';
 import Cart from './Cart/Cart';
-import LanguageContainer from './../Language/LanguageContainer';
+import LanguageContainer from './Language/LanguageContainer';
+
 
 
 export default function DefaultLayout() {
@@ -31,7 +31,7 @@ export default function DefaultLayout() {
                 <LoginButton />
                 <LanguageContainer />
             </header>
-            <main>
+            <main className={styles.main}>
                 <Outlet />
             </main>
             <footer className={styles.footer}>

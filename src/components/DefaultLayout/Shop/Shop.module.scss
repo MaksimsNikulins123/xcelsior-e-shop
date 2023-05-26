@@ -1,5 +1,19 @@
 @import "./../../../styles/variables.module";
 
 .shop {
-    background-color: rgb(47, 25, 150);
+    width: 1200px;
+    height: auto;
+    img {
+        height:700px
+    }
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // overflow: hidden;
+    
+    // img{
+    //     width: 1200px;
+    //     height: 600px;
+    // }
+    
 }

@@ -4,7 +4,7 @@ export default function Logo() {
     return (
         <div className={styles.logo}>
             {/* <a href="#"> */}
-                <img class="dark-logo" src="/public/x-logo.svg" alt="xcelsior logo" />
+                <img  src="/x-logo.svg" alt="xcelsior logo" />
             {/* </a> */}
 
             {/* <img class="white-logo" src="https://www.xcelsior.lv/content/x-logo-white.svg" alt="xcelsior logo" width="150"/> */}

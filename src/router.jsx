@@ -1,7 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import Login from "./components/LoginLayout/Login.jsx";
 import NotFound from "./views/NotFound";
-import Signup from "./components/SignupLayout/Signup";
+import Signup from "./components/SignupLayout/SignupFormikForm";
 import Cart from './views/Cart';
 import Payment from './views/Payment';
 import DefaultLayout from './components/DefaultLayout/DefaultLayout';
@@ -16,6 +15,9 @@ import Team from './components/DefaultLayout/NavigationBar/Team/Team';
 import Blog from './components/DefaultLayout/NavigationBar/Blog/Blog';
 import Projects from './components/DefaultLayout/NavigationBar/Projects/Projects';
 import Contacts from './components/DefaultLayout/NavigationBar/Contacts/Contacts';
+// import LoginReduxForm from './components/LoginLayout/LoginReduxForm';
+import LoginFormikForm from "./components/LoginLayout/LoginFormikForm";
+import SignupFormikForm from "./components/SignupLayout/SignupFormikForm";
 
 const router = createBrowserRouter([
     {
@@ -29,7 +31,7 @@ const router = createBrowserRouter([
 
             {
                 path: "/shop",
-                element: <Shop />
+                element: <Shop />,
             },
             {
                 path: "/en/shop",
@@ -66,17 +68,18 @@ const router = createBrowserRouter([
             {
                 path: '/payment',
                 element: <Payment />
-            }
+            },
+            {
+                path: '/login',
+                // element: <LoginReduxForm />
+                element: <LoginFormikForm />
+            },
+            {
+                path: '/signup',
+                element: <SignupFormikForm />
+            },
         ]
 
-    },
-    {
-        path: '/login',
-        element: <Login />
-    },
-    {
-        path: '/signup',
-        element: <Signup />
     },
     {
         path: '/',
