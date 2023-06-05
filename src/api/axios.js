@@ -1,55 +1,74 @@
-import { useStateContext } from "../contexts/ContextProvider";
+
+import axios from "axios";
+import { ToggleLoadingActionCreator } from "../redux/loading-reducer";
+import { ToggleSignupSeccessActionCreator } from "../redux/signupform-reducer";
+// import { useNavigate } from 'react-router-dom';
+
+
 
 export const UserAPI = {
-
+     
     
 
-    BASE_URL: 'http://127.0.0.1:8000',
 
-    SignUp: () => {
+    GetMessage: () => {
+        axios.get('http://127.0.0.1:8000/api/test')
+            .then(function (response) {
+                // handle success
+                console.log(response);
 
-        const {setUser, setToken} = useStateContext();
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+           
+            });
+    },
 
+    SignUp: (data, dispatch) => {
+        // const navigate =  useNavigate();
+        dispatch(ToggleLoadingActionCreator())
+        
+        axios.post('http://127.0.0.1:8000/api/signup', data)
+            .then(function () {
+                // navigate('/')
+                // console.log(response);
+                // window.location = '/'
+               
+                dispatch(ToggleSignupSeccessActionCreator(true))
+                dispatch(ToggleLoadingActionCreator())
+            })
+            .catch(function (error) {
+                dispatch(ToggleLoadingActionCreator())
 
-        const instance = axios.create({
-            baseURL: `${BASE_URL}/api/signup`,
+                alert(error.response.data.message)
+                // handle error
+                // console.log(error);
+            })
+            .finally(function () {
+                
+                // always executed
+            });
+    },
 
-            // headers: {
-            //     'authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
-            // }
-        });
-
-        instance.interceptors.request.use((config) => {
-            const token = localStorage.getItem('ACCESS_TOKEN');
-            config.headers.Authorization = `Bearer ${token}`;
-            return config;
+    Login: (data) => {
+        axios.post('http://127.0.0.1:8000/api/login', data )
+        .then(function (response) {
+            // handle success
+            console.log(response);
         })
-
-        instance.interceptors.response.use(
-            (response) => {
-                return response;
-            },
-            (error) => {
-                const {
-                    response
-                } = error;
-                if (response.status === 401) {
-                    localStorage.removeItem('ACCESS_TOKEN')
-                }
-                // else if (response.status === 403){
-                //     'Page is forbidden'
-                // }else if (response.status === 404){
-                //     'Page not found'
-                // }
-       
-
-                throw error;
-            }
-        )
-        // return instance.get('/authStatus' );
-        return instance;
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+        .finally(function () {
+            // always executed
+        });
     }
 
+    
 
     //     GetAuthStatus: () => {
 

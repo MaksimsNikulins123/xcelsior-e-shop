@@ -1,33 +1,16 @@
 const TOGGLE_LANGUAGE = 'TOGGLE-LANGUAGE';
 const FILTER_LANGUAGES_ARRAY = 'FILTER-LANGUAGES-ARRAY';
-// const IS_AUTH = 'IS-AUTH';
-// const SET_USER_DATA = 'SET-USER-DATA';
-// const HANDLE_LOGIN_INPUT_VALUE = 'HANDLE-LOGIN-INPUT-VALUE';
-// const TOGGLE_LOADING_ANIMATION = 'TOGGLE-LOADING-ANIMATION';
-// const TOGGLE_FORM = 'TOGGLE-FORM';
-// const AUTHENTICATION_CUCCESSFUL = 'AUTHENTICATION-CUCCESSFUL';
-// const LOGOUT_CUCCESSFUL = 'LOGOUT-CUCCESSFUL';
 
 let initialState = {
     defaultLanguage: 'en',
     allLanguages: ['lv', 'en', 'lt', 'ru'],
     currentLanguage: 'en',
     filteredLanguagesArray: ['lv', 'lt', 'ru'],
-    // authStatus: false,
-    // userId: null,   
-    // email: null,
-    // password: null,
-    // isAuth: false,
-    // loading: false,
-    // toggleForm: false
 }
 
 const languageReducer = (state = initialState, action) => {
-    // debugger
-    let stateCopy = {
-        ...state
-    };
-    // debugger
+    let stateCopy = {...state};
+
     switch (action.type) {
         case TOGGLE_LANGUAGE:
             stateCopy.currentLanguage = action.language;

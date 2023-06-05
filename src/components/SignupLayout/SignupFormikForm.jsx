@@ -1,106 +1,36 @@
 import 'bootstrap/dist/css/bootstrap.css';
 
 import { Formik, Form, Field } from 'formik';
-import { UserAPI } from '../../api/axios';
-import { useStateContext } from '../../contexts/ContextProvider';
+import LoadingSpiner from '../LoadingSpiner/LoadingSpiner';
+import { SignupFormValidator } from './SignupFormValidator';
 
-function validateEmail(value) {
-
-    let error;
-    if (!value) {
-        error = 'Required';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-        error = 'Invalid email address';
-    }
-    return error;
-}
-function validateRepeatEmail(email, value) {
-
-    let error;
-    if (!value) {
-        error = 'Required';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-        error = 'Invalid email address';
-    } else if (email !== value) {
-        error = 'Please repeat e-mail';
-    }
-    return error;
-}
-
-function validatePassword(value) {
-
-    let error;
-    if (!value) {
-        error = 'Required';
-    } else if (value.length < 5) {
-        error = 'Min length 5 symbols';
-    }
-    return error;
-}
-function validateRepeatPassword(password, value) {
-
-    let error;
-    if (!value) {
-        error = 'Required';
-    } else if (value.length < 5) {
-        error = 'Min length 5 symbols';
-    } else if (password !== value) {
-        error = 'Please repeat password';
-    }
-
-    return error;
-}
-function validateCheckbox(value) {
-    let error;
-    if (!value) {
-        error = 'Required';
-    }
-    return error;
-}
-
-// const submitFormContainer = () => {
-    // const {setUser, setToken} = useStateContext();
-    
-    const submitForm = (values) => {
-
-        // 
-    
-        console.log(values);
-    
-        // UserAPI.SignUp.post('/signup', values)
-        // .then(({data}) => {
-        //     setUser(data.user);
-        //     setToken(data.token);
-        // })
-        // .catch(error => {
-        //     const response = error.response;
-        //     if(response && response.status === 422) {
-        //         console.log(response.data.errors)
-        //     }
-        // })
-        // window.location.replace('/shop')
-    }
-// }
-
-
-
-
-
-const SignupFormikForm = () => (
+const SignupFormikForm = (props) => (
 
     <Formik
-        initialValues={{ email: '', repeatEmail: '', password: '', repeatPassword: '', userLocation: '' }}
-        onSubmit={submitForm}
+        initialValues={{ name: '', email: '', emailConfirmation: '', password: '', passwordConfirmation: '', userLocation: '' }}
+        // onSubmit={SignupFormValidator.submitForm}
+        onSubmit={props.submitForm}
     >
-        {({ errors, touched, values }) => (
+        {({ errors, touched, values}) => (
             <Form className="w-25 p-3">
                 <div className="mb-3 d-flex justify-content-center align-items-center">
                     <h1>Signup Form</h1>
                 </div>
                 <div className="mb-3">
                     <Field
+                        name="name"
+                        validate={SignupFormValidator.validateName}
+                        type="text"
+                        placeholder="name"
+                        aria-describedby="nameHelp"
+                        className={`form-control ${errors.name && touched.name ? "border-danger" : ""}`}
+                    />
+                    {errors.name && touched.name && <div className="link-danger">{errors.name}</div>}
+                </div>
+                <div className="mb-3">
+                    <Field
                         name="email"
-                        validate={validateEmail}
+                        validate={SignupFormValidator.validateEmail}
                         type="email"
                         placeholder="e-mail"
                         aria-describedby="emailHelp"
@@ -110,19 +40,19 @@ const SignupFormikForm = () => (
                 </div>
                 <div className="mb-3">
                     <Field
-                        name="repeatEmail"
-                        validate={value => validateRepeatEmail(values.email, value)}
+                        name="emailConfirmation"
+                        validate={value => SignupFormValidator.validateRepeatEmail(values.email, value)}
                         type="email"
                         placeholder="repeat e-mail"
                         aria-describedby="emailHelp"
-                        className={`form-control ${errors.repeatEmail && touched.repeatEmail ? "border-danger" : ""}`}
+                        className={`form-control ${errors.emailConfirmation && touched.emailConfirmation ? "border-danger" : ""}`}
                     />
-                    {errors.repeatEmail && touched.repeatEmail && <div className="link-danger">{errors.repeatEmail}</div>}
+                    {errors.emailConfirmation && touched.emailConfirmation && <div className="link-danger">{errors.emailConfirmation}</div>}
                 </div>
                 <div className="mb-3">
                     <Field
                         name="password"
-                        validate={validatePassword}
+                        validate={SignupFormValidator.validatePassword}
                         type="password"
                         autoComplete="on"
                         placeholder="password"
@@ -132,19 +62,19 @@ const SignupFormikForm = () => (
                 </div>
                 <div className="mb-3">
                     <Field
-                        name="repeatPassword"
-                        validate={value => validateRepeatPassword(values.password, value)}
+                        name="passwordConfirmation"
+                        validate={value => SignupFormValidator.validateRepeatPassword(values.password, value)}
                         type="password"
                         autoComplete="on"
                         placeholder="confirm password"
-                        className={`form-control ${errors.repeatPassword && touched.repeatPassword ? "border-danger" : ""}`}
+                        className={`form-control ${errors.passwordConfirmation && touched.passwordConfirmation ? "border-danger" : ""}`}
                     />
-                    {errors.repeatPassword && touched.repeatPassword && <div className="link-danger">{errors.repeatPassword}</div>}
+                    {errors.passwordConfirmation && touched.passwordConfirmation && <div className="link-danger">{errors.passwordConfirmation}</div>}
                 </div>
                 <div className="mb-3 text-primary text-opacity-50" >
                     <Field as="select"
                         name="userLocation"
-                        validate={validateCheckbox}
+                        validate={SignupFormValidator.validateCheckbox}
                         className="form-select"
                     >
                         <option className="text-body-tertiary" defaultValue="">Your working place</option>
@@ -155,7 +85,16 @@ const SignupFormikForm = () => (
                     {errors.userLocation && touched.userLocation && <div className="link-danger">{errors.userLocation}</div>}
                 </div>
                 <div className="mb-3">
-                    <button type="submit" className="btn btn-primary">SignUp</button>
+                    {
+                        props.loading
+                        ?
+                        <LoadingSpiner/>
+                        :
+                        <div className="d-flex justify-content-center">
+                            <button type="submit" className="btn btn-primary" >SignUp</button>
+                        </div>
+                    }
+                    
                 </div>
 
             </Form>

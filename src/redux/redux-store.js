@@ -6,11 +6,15 @@ import thunkMiddleware from 'redux-thunk';
 import languageReducer from './language-reducer';
 // import authReducer from './auth-reducer';
 import { reducer as formReducer } from 'redux-form'
+import loadingReducer from './loading-reducer';
+import signUpFormReducer from './signupform-reducer';
 
 
 let reducers = combineReducers({
     language: languageReducer,
     form: formReducer,
+    loading: loadingReducer,
+    signUpForm: signUpFormReducer,
     // authentication: authenticationReducer,
     // authorization: authorizationReducer
     // search: searchReducer,

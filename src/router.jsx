@@ -1,6 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import NotFound from "./views/NotFound";
-import Signup from "./components/SignupLayout/SignupFormikForm";
+// import Signup from "./components/SignupLayout/SignupFormikForm";
 import Cart from './views/Cart';
 import Payment from './views/Payment';
 import DefaultLayout from './components/DefaultLayout/DefaultLayout';
@@ -16,8 +16,11 @@ import Blog from './components/DefaultLayout/NavigationBar/Blog/Blog';
 import Projects from './components/DefaultLayout/NavigationBar/Projects/Projects';
 import Contacts from './components/DefaultLayout/NavigationBar/Contacts/Contacts';
 // import LoginReduxForm from './components/LoginLayout/LoginReduxForm';
-import LoginFormikForm from "./components/LoginLayout/LoginFormikForm";
-import SignupFormikForm from "./components/SignupLayout/SignupFormikForm";
+// import LoginFormikForm from "./components/LoginLayout/LoginFormikForm";
+// import SignupFormikForm from "./components/SignupLayout/SignupFormikForm";
+// import SignupFormikFormContainer from "./components/SignupLayout/SignupFormikFormContainer";
+import SignUpFormContainer from "./components/SignupLayout/SignUpFormContainer";
+import LoginFormContainer from "./components/LoginLayout/LoginFormContainer";
 
 const router = createBrowserRouter([
     {
@@ -72,11 +75,14 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 // element: <LoginReduxForm />
-                element: <LoginFormikForm />
+                // element: <LoginFormikForm />
+                element: <LoginFormContainer />
             },
             {
                 path: '/signup',
-                element: <SignupFormikForm />
+                // element: <SignupFormikForm />
+                // element: <SignupFormikFormContainer />
+                element: <SignUpFormContainer />
             },
         ]
 

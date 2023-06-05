@@ -1,53 +1,53 @@
-const GET_AUTH_STATUS = 'GET-AUTH-STATUS';
-const IS_AUTH = 'IS-AUTH';
-const SET_USER_DATA = 'SET-USER-DATA';
-const HANDLE_LOGIN_INPUT_VALUE = 'HANDLE-LOGIN-INPUT-VALUE';
-const TOGGLE_LOADING_ANIMATION = 'TOGGLE-LOADING-ANIMATION';
-const TOGGLE_FORM = 'TOGGLE-FORM';
-const AUTHENTICATION_CUCCESSFUL = 'AUTHENTICATION-CUCCESSFUL';
-const LOGOUT_CUCCESSFUL = 'LOGOUT-CUCCESSFUL';
+// const GET_AUTH_STATUS = 'GET-AUTH-STATUS';
+// const IS_AUTH = 'IS-AUTH';
+// const SET_USER_DATA = 'SET-USER-DATA';
+// const HANDLE_LOGIN_INPUT_VALUE = 'HANDLE-LOGIN-INPUT-VALUE';
+// const TOGGLE_LOADING_ANIMATION = 'TOGGLE-LOADING-ANIMATION';
+// const TOGGLE_FORM = 'TOGGLE-FORM';
+// const AUTHENTICATION_CUCCESSFUL = 'AUTHENTICATION-CUCCESSFUL';
+// const LOGOUT_CUCCESSFUL = 'LOGOUT-CUCCESSFUL';
 
 let initialState = {
-    authStatus: false,
-    userId: null,   
-    email: null,
-    password: null,
-    isAuth: false,
-    loading: false,
-    toggleForm: false
+    // authStatus: false,
+    // userId: null,   
+    // email: null,
+    // password: null,
+    // isAuth: false,
+    // loading: false,
+    // toggleForm: false
 }
 
 const authReducer = (state = initialState, action) => {
     let stateCopy = {...state};
     // debugger
     switch (action.type) {
-        case GET_AUTH_STATUS:
-            stateCopy.authStatus = action.authStatus;
-            return stateCopy;
+        // case GET_AUTH_STATUS:
+        //     stateCopy.authStatus = action.authStatus;
+        //     return stateCopy;
         case IS_AUTH:
             stateCopy.isAuth = action.isAuth;
             return stateCopy;
-        case HANDLE_LOGIN_INPUT_VALUE:
-            stateCopy.email = action.email;
-            stateCopy.password = action.password;
-            return stateCopy;
-        case TOGGLE_FORM:
-            stateCopy.toggleForm = !stateCopy.toggleForm;
-            return stateCopy;
+        // case HANDLE_LOGIN_INPUT_VALUE:
+        //     stateCopy.email = action.email;
+        //     stateCopy.password = action.password;
+        //     return stateCopy;
+        // case TOGGLE_FORM:
+        //     stateCopy.toggleForm = !stateCopy.toggleForm;
+        //     return stateCopy;
         case TOGGLE_LOADING_ANIMATION:
             stateCopy.loading = action.value;
             return stateCopy;
-        case AUTHENTICATION_CUCCESSFUL:
-            stateCopy.isAuth = action.value;
-            return stateCopy;
-        case LOGOUT_CUCCESSFUL:
-            stateCopy.isAuth = action.value;
-            return stateCopy;   
-        case SET_USER_DATA:
+        // case AUTHENTICATION_CUCCESSFUL:
+        //     stateCopy.isAuth = action.value;
+        //     return stateCopy;
+        // case LOGOUT_CUCCESSFUL:
+        //     stateCopy.isAuth = action.value;
+        //     return stateCopy;   
+        // case SET_USER_DATA:
            
-            return {
+        //     return {
 
-            }
+        //     }
             default: 
              return stateCopy;
     }
