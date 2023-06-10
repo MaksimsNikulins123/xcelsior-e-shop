@@ -8,6 +8,7 @@ import languageReducer from './language-reducer';
 import { reducer as formReducer } from 'redux-form'
 import loadingReducer from './loading-reducer';
 import signUpFormReducer from './signupform-reducer';
+import loginFormReducer from './loginform-reducer';
 
 
 let reducers = combineReducers({
@@ -15,6 +16,7 @@ let reducers = combineReducers({
     form: formReducer,
     loading: loadingReducer,
     signUpForm: signUpFormReducer,
+    loginForm: loginFormReducer,
     // authentication: authenticationReducer,
     // authorization: authorizationReducer
     // search: searchReducer,

@@ -1,16 +1,11 @@
 
 import axios from "axios";
 import { ToggleLoadingActionCreator } from "../redux/loading-reducer";
+import { ToggleLoginSeccessActionCreator, ToggleLoginUserRightsActionCreator } from "../redux/loginform-reducer";
 import { ToggleSignupSeccessActionCreator } from "../redux/signupform-reducer";
-// import { useNavigate } from 'react-router-dom';
-
-
 
 export const UserAPI = {
      
-    
-
-
     GetMessage: () => {
         axios.get('http://127.0.0.1:8000/api/test')
             .then(function (response) {
@@ -33,19 +28,13 @@ export const UserAPI = {
         
         axios.post('http://127.0.0.1:8000/api/signup', data)
             .then(function () {
-                // navigate('/')
-                // console.log(response);
-                // window.location = '/'
-               
                 dispatch(ToggleSignupSeccessActionCreator(true))
                 dispatch(ToggleLoadingActionCreator())
             })
             .catch(function (error) {
                 dispatch(ToggleLoadingActionCreator())
-
                 alert(error.response.data.message)
-                // handle error
-                // console.log(error);
+
             })
             .finally(function () {
                 
@@ -53,15 +42,18 @@ export const UserAPI = {
             });
     },
 
-    Login: (data) => {
+    Login: (data, dispatch) => {
+        dispatch(ToggleLoadingActionCreator())
         axios.post('http://127.0.0.1:8000/api/login', data )
         .then(function (response) {
-            // handle success
-            console.log(response);
+            console.log(response)
+            dispatch(ToggleLoginSeccessActionCreator(true))
+            dispatch(ToggleLoginUserRightsActionCreator(response.data.rights))
+            dispatch(ToggleLoadingActionCreator())
         })
         .catch(function (error) {
-            // handle error
-            console.log(error);
+            dispatch(ToggleLoadingActionCreator())
+            alert(error.response.data.message)
         })
         .finally(function () {
             // always executed

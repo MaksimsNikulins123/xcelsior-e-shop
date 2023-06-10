@@ -7,10 +7,11 @@ import NavigationBar from "./NavigationBar/NavigationBar";
 import AllRightReserved from "./AllRightReserved/AllRightReserved";
 import Cart from './Cart/Cart';
 import LanguageContainer from './Language/LanguageContainer';
+import LogoutButtonContainer from "./LogoutButton/LogoutButtonContainer";
 
 
 
-export default function DefaultLayout() {
+export default function DefaultLayout(props) {
 
     const { user, token } = useStateContext();
     // debugger
@@ -28,7 +29,14 @@ export default function DefaultLayout() {
                 <Logo />
                 <NavigationBar />
                 <Cart />
-                <LoginButton />
+                {
+                    props.loginSeccess
+                    ?
+                    <LogoutButtonContainer />
+                    :
+                    <LoginButton />
+                }
+                
                 <LanguageContainer />
             </header>
             <main className={styles.main}>

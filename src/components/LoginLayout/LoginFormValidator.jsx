@@ -25,14 +25,14 @@ export const LoginFormValidator = {
         return error;
     },
 
-    submitForm(values) {
+    submitForm(values, dispatch) {
         // console.log(values)
         const formData = {
             'email': values.email,
             'password': values.password,
             'remember_me': values.rememberMe
         }
-        UserAPI.Login(formData)
+        UserAPI.Login(formData, dispatch)
     }
 }
 

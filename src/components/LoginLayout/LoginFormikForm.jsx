@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Formik, Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 import { LoginFormValidator } from './LoginFormValidator';
+import LoadingSpiner from './../LoadingSpiner/LoadingSpiner';
 
 const LoginFormikForm = (props) => (
 
@@ -10,7 +11,7 @@ const LoginFormikForm = (props) => (
 
     <Formik
         initialValues={{ email: '', password: '', rememberMe: false }}
-        onSubmit={LoginFormValidator.submitForm}
+        onSubmit={props.submitForm}
     >
 
         {({ errors, touched }) => (
@@ -48,15 +49,21 @@ const LoginFormikForm = (props) => (
                         name="rememberMe"
                         type="checkbox"
                         className="form-check-input"
-                        // className={`form-check-input ${errors.checkbox && touched.checkbox ? "border-danger" : ""}`}
                         id="exampleCheck1"
                         autoComplete="off"
                     />
                     <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
-                    {/* {errors.checkbox && touched.checkbox && <div className="link-danger">{errors.checkbox}</div>} */}
                 </div>
                 <div className="mb-3">
-                    <button type="submit" className="btn btn-primary">Login</button>
+                {
+                        props.loading
+                        ?
+                        <LoadingSpiner/>
+                        :
+                        <div className="d-flex justify-content-center">
+                            <button type="submit" className="btn btn-primary" >Login</button>
+                        </div>
+                    }
                 </div>
                 <div className="mb-3">
                     <Link to="/signup"

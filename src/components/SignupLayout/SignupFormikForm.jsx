@@ -80,6 +80,7 @@ const SignupFormikForm = (props) => (
                         <option className="text-body-tertiary" defaultValue="">Your working place</option>
                         <option value="UB9">UB9</option>
                         <option value="BB">BB</option>
+                        <option value="D3A">D3A</option>
                         <option value="PFD">PFD</option>
                     </Field>
                     {errors.userLocation && touched.userLocation && <div className="link-danger">{errors.userLocation}</div>}
