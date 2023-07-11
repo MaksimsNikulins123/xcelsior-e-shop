@@ -11,11 +11,11 @@ import store from './redux/redux-store';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ReduxStoreProvider store={store}>
-    <ContextProvider>
+      <ContextProvider>
       
         <RouterProvider router={router} />
       
-    </ContextProvider>
+      </ContextProvider>
     </ReduxStoreProvider>
   </React.StrictMode>
 )

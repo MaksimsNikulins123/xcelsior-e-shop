@@ -1,7 +1,7 @@
 
 import axios from "axios";
 import { ToggleLoadingActionCreator } from "../redux/loading-reducer";
-import { ToggleLoginSeccessActionCreator, ToggleLoginUserRightsActionCreator } from "../redux/loginform-reducer";
+import { SetLoginUserAccessTokenActionCreator, ToggleLoginSeccessActionCreator, ToggleLoginUserRightsActionCreator } from "../redux/loginform-reducer";
 import { ToggleSignupSeccessActionCreator } from "../redux/signupform-reducer";
 
 export const UserAPI = {
@@ -43,16 +43,19 @@ export const UserAPI = {
     },
 
     Login: (data, dispatch) => {
+
         dispatch(ToggleLoadingActionCreator())
         axios.post('http://127.0.0.1:8000/api/login', data )
         .then(function (response) {
-            console.log(response)
+            // dispatch(ToggleUserStatusActionCreator(response.data.rights))
+
             dispatch(ToggleLoginSeccessActionCreator(true))
             dispatch(ToggleLoginUserRightsActionCreator(response.data.rights))
-            dispatch(ToggleLoadingActionCreator())
+            dispatch(SetLoginUserAccessTokenActionCreator(response.data.token))
+            dispatch(ToggleLoadingActionCreator(false))
         })
         .catch(function (error) {
-            dispatch(ToggleLoadingActionCreator())
+            dispatch(ToggleLoadingActionCreator(true))
             alert(error.response.data.message)
         })
         .finally(function () {

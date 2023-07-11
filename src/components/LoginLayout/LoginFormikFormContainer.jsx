@@ -18,8 +18,8 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const LoginFormContainer = compose(
+const LoginFormikFormContainer = compose(
     connect(mapStateToProps, mapDispatchToProps)
 )(LoginForm) 
 
-export default LoginFormContainer
+export default LoginFormikFormContainer

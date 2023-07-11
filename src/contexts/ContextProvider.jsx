@@ -1,6 +1,7 @@
 import { createContext, useContext,  useState } from "react"
 
 const StateContext = createContext({
+    color: null,
     user: null,
     token: null,
     setUser: () => {},
@@ -9,20 +10,13 @@ const StateContext = createContext({
 
 export const ContextProvider = ({children}) => {
 
-    const [user, setUser] = useState({
-        name: 'Max'
-    });
-    const [token, _setToken] = useState(
-        null
-        // localStorage.getItem('ACCESS_TOKEN')
-        );
-    // const [token, _setToken] = useState('guest');
-    // const [token, _setToken] = useState('manager');
-    // const [token, _setToken] = useState('admin');
+    const [color, setColor] = useState(false)
+    const [user, setUser] = useState('guest');
+    const [token, _setToken] = useState(localStorage.getItem('ACCESS_TOKEN'));
 
     const setToken = (token) => {
         _setToken(token)
-
+      
         if(token) {
             localStorage.setItem('ACCESS_TOKEN', token);
         } else {
@@ -31,8 +25,10 @@ export const ContextProvider = ({children}) => {
     }
     return(
         <StateContext.Provider value={{
+            color,
             user,
             token,
+            setColor,
             setUser,
             setToken
         }}>

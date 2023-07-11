@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import LogoutButton from './LogoutButton';
-import { ToggleLoginSeccessActionCreator } from './../../../redux/loginform-reducer';
+import { LogoutThunkCreator } from '../../../redux/thunks/LogoutThunkCreator';
 
 const mapStateToProps = (state) => {
     return {
@@ -11,7 +11,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        toggleLoginSeccess: () => {dispatch(ToggleLoginSeccessActionCreator(false))}
+        // toggleLoginSeccess: () => {dispatch(ToggleLoginSeccessActionCreator(false))}
+        logout: () => {dispatch(LogoutThunkCreator())}
     }
 }
 

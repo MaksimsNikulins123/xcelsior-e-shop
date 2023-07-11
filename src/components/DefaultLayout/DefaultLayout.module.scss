@@ -1,22 +1,30 @@
 @import "./../../styles/variables.module";
 
 .container {
-    background-color: rgb(226, 216, 216);
+    
     border-radius: $borderRadius;
     width: 1200px;
     height: 100%;
     margin: auto;
     display: grid;
-    grid-template-rows: 70px 1fr 20px;
+    grid-template-rows: 70px 1fr 25px;
     gap: 10px;
+    
+    &.lightmode {
+        background-color: rgb(226, 216, 216);
+    }
+    &.darkmode {
+        background-color:black;
+    }
 }
 .header {
-    background-color: rgb(198, 211, 204);
+    
     border-radius: $borderRadius;
     display: grid;
-    grid-template-columns: 150px 1fr 50px 50px 100px;
+    grid-template-columns: 130px 1fr 50px 50px 100px 30px 30px;
     gap: 10px;
-    justify-content: space-between;
+    // justify-content: space-around;
+    padding: 2px;
     align-items: center;
     margin: 5px;
     a{
@@ -31,6 +39,12 @@
         color: white;
         
     }
+    &.lightmode {
+        background-color: rgb(198, 211, 204);;
+    }
+    &.darkmode {
+        background-color:white;
+    }
     
 }
 .main {
@@ -39,10 +53,17 @@
     align-items: center;
 }
 .footer {
-    background-color: rgb(213, 235, 174);
+    
     border-radius: $borderRadius;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 5px;
+    &.lightmode {
+        background-color: rgb(213, 235, 174);
+    }
+    &.darkmode {
+        background-color:white;
+    }
 }
 

@@ -7,10 +7,12 @@
     justify-content: center;
     // border: 1px solid rgb(240, 144, 54);
     border-radius: $borderRadius;
+  
     // padding: 10px;
     a{
         display: grid;
         justify-content: center;  
+        font-size: $fontSizeNavBar;
     }
     
 }

@@ -3,9 +3,7 @@ import NotFound from "./views/NotFound";
 import Cart from './views/Cart';
 import Payment from './views/Payment';
 import Manager from './views/Manager';
-import Admin from './views/Admin';
 import ManagerLayout from './components/ManagerLayout/ManagerLayout';
-import AdminLayout from './components/AdminLayout/AdminLayout';
 import Katalog from './components/DefaultLayout/NavigationBar/Katalog/Katalog';
 import Shop from './components/DefaultLayout/Shop/Shop';
 import AboutUs from './components/DefaultLayout/NavigationBar/AboutUs/AboutUs';
@@ -14,8 +12,8 @@ import Blog from './components/DefaultLayout/NavigationBar/Blog/Blog';
 import Projects from './components/DefaultLayout/NavigationBar/Projects/Projects';
 import Contacts from './components/DefaultLayout/NavigationBar/Contacts/Contacts';
 import SignUpFormContainer from "./components/SignupLayout/SignUpFormContainer";
-import LoginFormContainer from "./components/LoginLayout/LoginFormContainer";
 import DefaultLayoutContainer from "./components/DefaultLayout/DefaultLayoutContainer";
+import LoginFormikFormContainer from "./components/LoginLayout/LoginFormikFormContainer";
 
 const router = createBrowserRouter([
     {
@@ -69,7 +67,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/login',
-                element: <LoginFormContainer />
+                element: <LoginFormikFormContainer />
             },
             {
                 path: '/signup',
@@ -94,21 +92,21 @@ const router = createBrowserRouter([
             
         ]
     },
-    {
-        path: '/',
-        element: <AdminLayout />,
-        children: [
-            {
-                path: '/',
-                element: <Navigate to="/admin" />
-            },
-            {
-                path: '/admin',
-                element: <Admin />
-            },
+    // {
+    //     path: '/',
+    //     element: <AdminLayoutContainer />,
+    //     children: [
+    //         {
+    //             path: '/',
+    //             element: <Navigate to="/admin" />
+    //         },
+    //         {
+    //             path: '/admin',
+    //             element: <Admin />
+    //         },
             
-        ]
-    },
+    //     ]
+    // },
     {
         path: '*',
         element: <NotFound />

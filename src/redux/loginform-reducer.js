@@ -1,8 +1,11 @@
 const LOGIN_SECCESS = 'LOGIN-SECCESS';
 const TOGGLE_LOGIN_USER_RIGHTS = 'TOGGLE-LOGIN-USER-RIGHTS';
+const SET_LOGIN_USER_ACCESS_TOKEN = 'SET-LOGIN-USER-ACCESS-TOKEN';
+
 let initialState = {
     loginSeccess: false,
     loginUserRights: 'guest',
+    loginUserAccessToken: null
 
 }
 
@@ -14,6 +17,9 @@ const loginFormReducer = (state = initialState, action) => {
             return stateCopy;
         case TOGGLE_LOGIN_USER_RIGHTS:
             stateCopy.loginUserRights = action.value;
+            return stateCopy;
+        case SET_LOGIN_USER_ACCESS_TOKEN:
+            stateCopy.loginUserAccessToken = action.value;
             return stateCopy;
         default:
             return stateCopy;
@@ -29,6 +35,12 @@ export const ToggleLoginSeccessActionCreator = (value) => {
 export const ToggleLoginUserRightsActionCreator = (value) => {
     return {
         type: TOGGLE_LOGIN_USER_RIGHTS,
+        value: value
+    }
+}
+export const SetLoginUserAccessTokenActionCreator = (value) => {
+    return {
+        type: SET_LOGIN_USER_ACCESS_TOKEN,
         value: value
     }
 }

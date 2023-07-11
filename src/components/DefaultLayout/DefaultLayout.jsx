@@ -1,31 +1,31 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import styles from './DefaultLayout.module.scss';
 import LoginButton from './LoginButton/LoginButton';
 import Logo from './Logo/Logo';
-import { useStateContext } from "../../contexts/ContextProvider";
 import NavigationBar from "./NavigationBar/NavigationBar";
 import AllRightReserved from "./AllRightReserved/AllRightReserved";
 import Cart from './Cart/Cart';
 import LanguageContainer from './Language/LanguageContainer';
 import LogoutButtonContainer from "./LogoutButton/LogoutButtonContainer";
+import Mode from './Mode/Mode';
+import UserStatusContainer from "./UserStatus/UserStatusContainer";
+import { useStateContext } from "../../contexts/ContextProvider";
 
 
 
 export default function DefaultLayout(props) {
-
-    const { user, token } = useStateContext();
-    // debugger
-    console.log(token)
-    if (token === 'admin') {
-        return <Navigate to="/admin" />
-    }
-    if (token === 'manager') {
-        return <Navigate to="/manager" />
-    }
+   
+    const {color} = useStateContext();
 
     return (
-        <div className={styles.container}>
-            <header className={styles.header}>
+        <div 
+        // className={styles.container} 
+        className={`${styles.container} ${ color ? styles.darkmode : styles.lightmode}`}
+        >
+            <header 
+            // className={styles.header}
+            className={`${styles.header} ${ color ? styles.darkmode : styles.lightmode}`}
+            >
                 <Logo />
                 <NavigationBar />
                 <Cart />
@@ -38,14 +38,20 @@ export default function DefaultLayout(props) {
                 }
                 
                 <LanguageContainer />
+                <UserStatusContainer />
+                <Mode />
             </header>
             <main className={styles.main}>
                 <Outlet />
             </main>
-            <footer className={styles.footer}>
+            
+            <footer 
+            // className={styles.footer}
+            className={`${styles.footer} ${ color ? styles.darkmode : styles.lightmode}`}
+            >
                 <div>
-                    <AllRightReserved />
-                </div>
+                    <AllRightReserved />  
+                </div>       
             </footer>
         </div>
     )
