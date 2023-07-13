@@ -44,7 +44,11 @@ const LoginFormikForm = (props) => (
                     />
                     {errors.password && touched.password && <div className="link-danger">{errors.password}</div>}
                 </div>
-                <div className="mb-3">
+                <div className="mb-3 d-flex justify-content-between">
+                    <div>
+                    <Link to="/login">Forgot password?</Link>
+                    </div>
+                    <div>
                     <Field
                         name="rememberMe"
                         type="checkbox"
@@ -52,7 +56,9 @@ const LoginFormikForm = (props) => (
                         id="exampleCheck1"
                         autoComplete="off"
                     />
-                    <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
+                    <label className="form-check-label" htmlFor="exampleCheck1">Remember Me</label>
+                    </div>
+                    
                 </div>
                 <div className="mb-3">
                 {

@@ -24,15 +24,16 @@ export const UserAPI = {
 
     SignUp: (data, dispatch) => {
         // const navigate =  useNavigate();
-        dispatch(ToggleLoadingActionCreator())
+        dispatch(ToggleLoadingActionCreator(true))
         
         axios.post('http://127.0.0.1:8000/api/signup', data)
             .then(function () {
+                // console.log(response)
                 dispatch(ToggleSignupSeccessActionCreator(true))
-                dispatch(ToggleLoadingActionCreator())
+                dispatch(ToggleLoadingActionCreator(false))
             })
             .catch(function (error) {
-                dispatch(ToggleLoadingActionCreator())
+                dispatch(ToggleLoadingActionCreator(false))
                 alert(error.response.data.message)
 
             })
@@ -44,7 +45,7 @@ export const UserAPI = {
 
     Login: (data, dispatch) => {
 
-        dispatch(ToggleLoadingActionCreator())
+        dispatch(ToggleLoadingActionCreator(true))
         axios.post('http://127.0.0.1:8000/api/login', data )
         .then(function (response) {
             // dispatch(ToggleUserStatusActionCreator(response.data.rights))
@@ -55,7 +56,7 @@ export const UserAPI = {
             dispatch(ToggleLoadingActionCreator(false))
         })
         .catch(function (error) {
-            dispatch(ToggleLoadingActionCreator(true))
+            dispatch(ToggleLoadingActionCreator(false))
             alert(error.response.data.message)
         })
         .finally(function () {
